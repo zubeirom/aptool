@@ -1,0 +1,11 @@
+version: 2
+jobs:
+  build:
+    docker:
+      — image: circleci/node:7.10
+    working_directory: ~/GIT/zumo/webapps/aptool/backend
+    steps:
+      - checkout
+      - run:
+          name: Install npm dependencies
+          command: 'npm install'
