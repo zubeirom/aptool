@@ -18,7 +18,8 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "nodemon": "^1.19.1",
-    "pg": "^7.12.1"
+    "pg": "^7.12.1",
+    "sequelize": "^5.15.0"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
