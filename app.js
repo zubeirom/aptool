@@ -13,6 +13,6 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(cors());
 
 
-const PORT = process.env.PORT || 3000;
+const { PORT } = process.env;
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
