@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
+            allowNull: false,
         },
         username: {
             type: DataTypes.STRING,
@@ -30,16 +31,19 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        status: {
+            type: DataTypes.ARRAY(DataTypes.JSONB),
+        },
         social: {
             type: DataTypes.ARRAY(DataTypes.JSONB),
             defaultValue: '{}',
         },
-        job_keyword: {
+        jobKeyword: {
             type: DataTypes.ARRAY(DataTypes.STRING),
         },
     }, {});
-    Account.associate = function (/* models */) {
-    // associations can be defined here
+    Account.associate = function (models) {
+        Account.hasMany(models.Application, { as: 'applications' });
     };
     return Account;
 };
