@@ -16,6 +16,11 @@ module.exports = {
   },
   rules: {
     'no-console': 0,
-    'indent': ['error', 4]
+    'indent': ['error', 4],
+    'import/no-unresolved': [2, {
+      ignore: [
+        'jsonwebtoken',
+      ],
+    }],
   },
 };
