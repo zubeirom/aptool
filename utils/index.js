@@ -1,5 +1,4 @@
-// sconst jwt = require('jsonwebtoken');
-// const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
     // Get access token from header
@@ -8,12 +7,9 @@ module.exports = {
         const tokenarr = header.split(' ');
         return tokenarr[1];
     },
-    // TODO: Make jwt sign function
-    jwtSign() { },
-    // TODO: Make jwt verify function
-    jwtVerify() { },
-    // TODO: Make bcrypt hash for password
-    hash() { },
-    // TODO: Check hash with password
-    comparePassword() {},
+
+    hash(password) {
+        const salt = bcrypt.genSaltSync(10);
+        return bcrypt.hashSync(password, salt);
+    },
 };
