@@ -24,9 +24,9 @@ module.exports = {
             },
         },
         created: {
-            type: Sequelize.DATE,
+            type: Sequelize.TIMESTAMP,
             allowNull: false,
-            defaultValue: Sequelize.NOW,
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
         status: {
             type: Sequelize.JSONB,
