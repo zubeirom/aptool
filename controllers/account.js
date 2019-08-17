@@ -23,11 +23,12 @@ module.exports = {
         try {
             const { username, firstname, lastname, password } = req.body.account;
             const record = await account.findOne({ where: { username } })
-            console.log(record)
-            // if (record === null) {
-            //     const hash = await utils.hash(password);
-            //     const saveUser = await Account.create({ username, firstname, lastname, password: hash })
-            // } 
+            if (record === null) {
+                const hash = await utils.hash(password);
+                const saveUser = await account.create({ username, firstname, lastname, password: hash })
+                res.status(200).send(saveUser);
+                next();
+            } 
 
         } catch (error) {
             next(error)
