@@ -24,19 +24,12 @@ module.exports = (sequelize, DataTypes) => {
         email: {
             type: DataTypes.STRING,
         },
-        tel: {
-            type: DataTypes.STRING,
-        },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
         },
         statuses: {
             type: DataTypes.ARRAY(DataTypes.JSONB),
-        },
-        socials: {
-            type: DataTypes.ARRAY(DataTypes.JSONB),
-            defaultValue: '{}',
         },
         jobKeywords: {
             type: DataTypes.ARRAY(DataTypes.STRING),

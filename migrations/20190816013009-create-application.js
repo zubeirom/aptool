@@ -38,7 +38,7 @@ module.exports = {
         source: {
             type: Sequelize.STRING,
         },
-        recruiter: {
+        recruiters: {
             type: Sequelize.ARRAY(Sequelize.JSONB),
         },
         phases: {

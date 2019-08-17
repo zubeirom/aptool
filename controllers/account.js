@@ -17,5 +17,20 @@ module.exports = {
         } catch (error) {
             next(error);
         }
+    },
+
+    async add(req, res, next) {
+        try {
+            const { username, firstname, lastname, password } = req.body.account;
+            const record = await Account.findOne({ where: { username } })
+            console.log(record)
+            // if (record === null) {
+            //     const hash = await utils.hash(password);
+            //     const saveUser = await Account.create({ username, firstname, lastname, password: hash })
+            // } 
+
+        } catch (error) {
+            next(error)
+        }
     }
 };

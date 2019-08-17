@@ -25,9 +25,9 @@ module.exports = (sequelize, DataTypes) => {
             },
         },
         created: {
-            type: DataTypes.TIMESTAMP,
+            type: 'TIMESTAMP',
             allowNull: false,
-            defaultValue: DataTypes.literal('CURRENT_TIMESTAMP'),
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         },
         status: {
             type: DataTypes.JSONB,

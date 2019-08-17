@@ -7,7 +7,7 @@ const app = express();
 
 // Bodyparser
 app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use(bodyParser.json({ type: 'application/json' }));
 
 // cors
 app.use(cors());

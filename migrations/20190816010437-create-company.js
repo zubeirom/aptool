@@ -14,7 +14,7 @@ module.exports = {
         email: Sequelize.STRING,
         tel: Sequelize.STRING,
         location: Sequelize.JSONB,
-        social: Sequelize.ARRAY(Sequelize.JSONB),
+        socials: Sequelize.ARRAY(Sequelize.JSONB),
         createdAt: {
             allowNull: false,
             type: Sequelize.DATE,

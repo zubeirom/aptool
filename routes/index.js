@@ -14,7 +14,8 @@ router.post('/api/token', asyncHandler(async (req, res, next) => {
 }))
 
 /**ACCOUNT ROUTE*/
-router.get('/api/accounts', asyncHandler(accountController.get(req, res, next)))
+router.get('/api/accounts', asyncHandler(accountController.get));
+router.post('/api/accounts', asyncHandler(accountController.add));
 
 
 module.exports = router

@@ -23,21 +23,14 @@ module.exports = {
         email: {
             type: Sequelize.STRING,
         },
-        tel: {
-            type: Sequelize.STRING,
-        },
         password: {
             type: Sequelize.STRING,
             allowNull: false,
         },
-        status: {
+        statuses: {
             type: Sequelize.ARRAY(Sequelize.JSONB),
         },
-        social: {
-            type: Sequelize.ARRAY(Sequelize.JSONB),
-            defaultValue: '{}',
-        },
-        jobKeyword: {
+        jobKeywords: {
             type: Sequelize.ARRAY(Sequelize.STRING),
         },
         createdAt: {
