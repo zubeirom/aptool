@@ -1,6 +1,6 @@
 
 module.exports = {
-    up: (queryInterface, Sequelize) => queryInterface.createTable('Applications', {
+    up: (queryInterface, Sequelize) => queryInterface.createTable('application', {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -11,7 +11,7 @@ module.exports = {
             type: Sequelize.INTEGER,
             allowNull: false,
             references: {
-                model: 'Account',
+                model: 'account',
                 key: 'id',
             },
         },
@@ -19,12 +19,12 @@ module.exports = {
             type: Sequelize.INTEGER,
             allowNull: false,
             references: {
-                model: 'Company',
+                model: 'company',
                 key: 'id',
             },
         },
         created: {
-            type: Sequelize.TIMESTAMP,
+            type: 'TIMESTAMP',
             allowNull: false,
             defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
@@ -44,6 +44,15 @@ module.exports = {
         phases: {
             type: Sequelize.ARRAY(Sequelize.JSONB),
         },
+        position: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            references: {
+                model: 'position',
+                key: 'name'
+            }
+        },
+        note: Sequelize.STRING,
         createdAt: {
             allowNull: false,
             type: 'TIMESTAMP',
@@ -55,5 +64,5 @@ module.exports = {
             defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
     }),
-    down: (queryInterface /* Sequelize */) => queryInterface.dropTable('Applications'),
+    down: (queryInterface /* Sequelize */) => queryInterface.dropTable('application'),
 };

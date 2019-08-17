@@ -1,6 +1,6 @@
 
 module.exports = {
-    up: (queryInterface, Sequelize) => queryInterface.createTable('Accounts', {
+    up: (queryInterface, Sequelize) => queryInterface.createTable('account', {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -44,5 +44,5 @@ module.exports = {
             defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
     }),
-    down: (queryInterface /* Sequelize */) => queryInterface.dropTable('Accounts'),
+    down: (queryInterface /* Sequelize */) => queryInterface.dropTable('account'),
 };

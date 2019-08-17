@@ -1,6 +1,6 @@
 
 module.exports = {
-    up: (queryInterface, Sequelize) => queryInterface.createTable('Companies', {
+    up: (queryInterface, Sequelize) => queryInterface.createTable('company', {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -26,5 +26,5 @@ module.exports = {
             defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
     }),
-    down: (queryInterface /* Sequelize */) => queryInterface.dropTable('Companies'),
+    down: (queryInterface /* Sequelize */) => queryInterface.dropTable('company'),
 };

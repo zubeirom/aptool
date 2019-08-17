@@ -2,12 +2,6 @@
 
 module.exports = (sequelize, DataTypes) => {
     const Company = sequelize.define('Company', {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-            allowNull: false,
-        },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
