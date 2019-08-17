@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Account',
+                model: 'account',
                 key: 'id',
             },
         },
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Company',
+                model: 'company',
                 key: 'id',
             },
         },
@@ -39,9 +39,18 @@ module.exports = (sequelize, DataTypes) => {
         phases: {
             type: DataTypes.ARRAY(DataTypes.JSONB),
         },
+        positionId: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'position',
+                key: 'name'
+            }
+        },
     }, {});
     Application.associate = function (models) {
-        Application.belongsTo(models.Account, { foreignKey: 'authorId', as: 'author' });
+        Application.belongsTo(models.Account, { foreignKey: 'accountId', as: 'account' });
+        Application.hasOne(models.position, { foreignKey: 'positionId', as: 'position'})
     };
     return Application;
 };

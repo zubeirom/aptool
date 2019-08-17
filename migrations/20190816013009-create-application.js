@@ -44,14 +44,6 @@ module.exports = {
         phases: {
             type: Sequelize.ARRAY(Sequelize.JSONB),
         },
-        position: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            references: {
-                model: 'position',
-                key: 'name'
-            }
-        },
         note: Sequelize.STRING,
         createdAt: {
             allowNull: false,
