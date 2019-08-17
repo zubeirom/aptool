@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 
 module.exports = (sequelize, DataTypes) => {
-    const Application = sequelize.define('Application', {
+    const Application = sequelize.define('application', {
         accountId: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -47,9 +47,9 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'name'
             }
         },
-    }, {});
+    }, { freezeTableName: true });
     Application.associate = function (models) {
-        Application.belongsTo(models.Account, { foreignKey: 'accountId', as: 'account' });
+        Application.belongsTo(models.account, { foreignKey: 'accountId', as: 'account' });
         Application.hasOne(models.position, { foreignKey: 'positionId', as: 'position'})
     };
     return Application;

@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 
 module.exports = (sequelize, DataTypes) => {
-    const Account = sequelize.define('Account', {
+    const Account = sequelize.define('account', {
         username: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -28,9 +28,9 @@ module.exports = (sequelize, DataTypes) => {
         jobKeywords: {
             type: DataTypes.ARRAY(DataTypes.STRING),
         },
-    }, {});
+    }, { freezeTableName: true });
     Account.associate = function (models) {
-        Account.hasMany(models.Application, { as: 'applications' });
+        Account.hasMany(models.application, { as: 'applications' });
     };
     return Account;
 };

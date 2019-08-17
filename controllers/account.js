@@ -1,4 +1,4 @@
-const { Account } = require('../models');
+const { account } = require('../models');
 const utils = require('../utils/index');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
@@ -22,7 +22,7 @@ module.exports = {
     async add(req, res, next) {
         try {
             const { username, firstname, lastname, password } = req.body.account;
-            const record = await Account.findOne({ where: { username } })
+            const record = await account.findOne({ where: { username } })
             console.log(record)
             // if (record === null) {
             //     const hash = await utils.hash(password);

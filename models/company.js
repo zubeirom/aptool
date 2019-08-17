@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 
 module.exports = (sequelize, DataTypes) => {
-    const Company = sequelize.define('Company', {
+    const Company = sequelize.define('company', {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
