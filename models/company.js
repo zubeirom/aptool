@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         email: DataTypes.STRING,
         tel: DataTypes.STRING,
         location: DataTypes.JSONB,
-        social: DataTypes.ARRAY(DataTypes.JSONB),
+        socials: DataTypes.ARRAY(DataTypes.JSONB),
     }, {});
     Company.associate = function (/* models */) {
     // associations can be defined here

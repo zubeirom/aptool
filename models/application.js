@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         source: {
             type: DataTypes.STRING,
         },
-        recruiter: {
+        recruiters: {
             type: DataTypes.ARRAY(DataTypes.JSONB),
         },
         phases: {

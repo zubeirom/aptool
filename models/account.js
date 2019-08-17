@@ -31,14 +31,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        status: {
+        statuses: {
             type: DataTypes.ARRAY(DataTypes.JSONB),
         },
-        social: {
+        socials: {
             type: DataTypes.ARRAY(DataTypes.JSONB),
             defaultValue: '{}',
         },
-        jobKeyword: {
+        jobKeywords: {
             type: DataTypes.ARRAY(DataTypes.STRING),
         },
     }, {});
