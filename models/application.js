@@ -44,13 +44,13 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             references: {
                 model: 'position',
-                key: 'name'
-            }
+                key: 'name',
+            },
         },
     }, { freezeTableName: true });
     Application.associate = function (models) {
         Application.belongsTo(models.account, { foreignKey: 'accountId', as: 'account' });
-        Application.hasOne(models.position, { foreignKey: 'positionId', as: 'position'})
+        Application.hasOne(models.position, { foreignKey: 'positionId', as: 'position' });
     };
     return Application;
 };

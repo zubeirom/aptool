@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 require('dotenv').config();
 const express = require('express');
 const asyncHandler = require('express-async-handler');
@@ -5,7 +6,7 @@ const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const accountController = require('../controllers/account');
-const utils = require('../utils/index');
+// const utils = require('../utils/index');
 const { account } = require('../models');
 
 const privateKey = fs.readFileSync('./config/private.key', 'utf8');
@@ -23,7 +24,7 @@ router.post('/api/token', asyncHandler(async (req, res, next) => {
                     const payload = {
                         username: record.username,
                     };
-                    const token = await jwt.sign(payload, privateKey, { expiresIn: '5h' });
+                    const token = await jwt.sign(payload, privateKey, { expiresIn: '120' });
                     res.status(200).send(`{ "access_token": "${token}" }`);
                     next();
                 } else {
