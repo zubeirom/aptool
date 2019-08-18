@@ -2,6 +2,7 @@ const { account } = require('../models');
 const utils = require('../utils/index');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 
 const privateKey = fs.readFileSync('./config/private.key', 'utf8');
 
@@ -21,7 +22,8 @@ module.exports = {
 
     async add(req, res, next) {
         try {
-            const { username, firstname, lastname, password } = req.body.account;
+            const data = await new JSONAPIDeserializer().deserialize(req.body);
+            const { username, firstname, lastname, password } = data
             const record = await account.findOne({ where: { username } })
             if (record === null) {
                 const hash = await utils.hash(password);
