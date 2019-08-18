@@ -1,17 +1,12 @@
-'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('application', 'positionId', {
-      type: Sequelize.INTEGER,
-      references: {
-        model: 'position',
-        key: 'id'
-      }
-    })
-  },
+    up: (queryInterface, Sequelize) => queryInterface.addColumn('application', 'positionId', {
+        type: Sequelize.INTEGER,
+        references: {
+            model: 'position',
+            key: 'id',
+        },
+    }),
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('application', 'positionId')
-  }
+    down: (queryInterface /* Sequelize */) => queryInterface.removeColumn('application', 'positionId'),
 };
