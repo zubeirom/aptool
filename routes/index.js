@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const exjwt = require('express-jwt');
 const bcrypt = require('bcryptjs');
 const accountController = require('../controllers/account');
+const applicationController = require('../controllers/application');
 // const utils = require('../utils/index');
 const { account } = require('../models');
 
@@ -52,6 +53,9 @@ router.post('/api/token', asyncHandler(async (req, res, next) => {
 /** ACCOUNT ROUTE */
 router.get('/api/accounts', jwtMW, asyncHandler(accountController.get));
 router.post('/api/accounts', asyncHandler(accountController.add));
+
+/** APPLICATION ROUTE */
+router.get('/api/applications', jwtMW, asyncHandler(applicationController.get));
 
 
 module.exports = router;
