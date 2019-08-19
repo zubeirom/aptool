@@ -4,12 +4,17 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
+const exjwt = require('express-jwt');
 const bcrypt = require('bcryptjs');
 const accountController = require('../controllers/account');
 // const utils = require('../utils/index');
 const { account } = require('../models');
 
 const privateKey = fs.readFileSync('./config/private.key', 'utf8');
+
+const jwtMW = exjwt({
+    secret: privateKey,
+});
 
 const router = express.Router();
 
@@ -22,9 +27,9 @@ router.post('/api/token', asyncHandler(async (req, res, next) => {
                 const record = findAccount.dataValues;
                 if (bcrypt.compareSync(password, record.password)) {
                     const payload = {
-                        username: record.username,
+                        id: record.id,
                     };
-                    const token = await jwt.sign(payload, privateKey, { expiresIn: '120' });
+                    const token = await jwt.sign(payload, privateKey, { expiresIn: '3h' });
                     res.status(200).send(`{ "access_token": "${token}" }`);
                     next();
                 } else {
@@ -45,7 +50,7 @@ router.post('/api/token', asyncHandler(async (req, res, next) => {
 }));
 
 /** ACCOUNT ROUTE */
-router.get('/api/accounts', asyncHandler(accountController.get));
+router.get('/api/accounts', jwtMW, asyncHandler(accountController.get));
 router.post('/api/accounts', asyncHandler(accountController.add));
 
 
