@@ -15,7 +15,7 @@ module.exports = {
                 key: 'id',
             },
         },
-        companyId: {
+        company: {
             type: Sequelize.INTEGER,
             allowNull: false,
             references: {
@@ -43,6 +43,9 @@ module.exports = {
         },
         phases: {
             type: Sequelize.ARRAY(Sequelize.JSONB),
+        },
+        occupation: {
+            type: Sequelize.STRING,
         },
         note: Sequelize.STRING,
         createdAt: {

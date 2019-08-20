@@ -13,10 +13,10 @@ module.exports = {
         location: {
             type: Sequelize.JSONB,
         },
-        contactPerson: {
+        contact_person: {
             type: Sequelize.JSONB,
         },
-        applicationId: {
+        application_id: {
             type: Sequelize.INTEGER,
             references: {
                 model: 'application',
