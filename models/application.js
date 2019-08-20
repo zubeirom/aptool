@@ -10,13 +10,9 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'id',
             },
         },
-        companyId: {
-            type: DataTypes.INTEGER,
+        company: {
+            type: DataTypes.STRING,
             allowNull: false,
-            references: {
-                model: 'company',
-                key: 'id',
-            },
         },
         created: {
             type: 'TIMESTAMP',
@@ -39,18 +35,13 @@ module.exports = (sequelize, DataTypes) => {
         phases: {
             type: DataTypes.ARRAY(DataTypes.JSONB),
         },
-        positionId: {
+        occupation: {
             type: DataTypes.STRING,
             allowNull: false,
-            references: {
-                model: 'position',
-                key: 'name',
-            },
         },
     }, { freezeTableName: true });
     Application.associate = function (models) {
         Application.belongsTo(models.account, { foreignKey: 'accountId', as: 'account' });
-        Application.hasOne(models.position, { foreignKey: 'positionId', as: 'position' });
     };
     return Application;
 };
