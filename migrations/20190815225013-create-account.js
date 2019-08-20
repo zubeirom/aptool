@@ -30,7 +30,7 @@ module.exports = {
         statuses: {
             type: Sequelize.ARRAY(Sequelize.JSONB),
         },
-        jobKeywords: {
+        job_keywords: {
             type: Sequelize.ARRAY(Sequelize.STRING),
         },
         createdAt: {

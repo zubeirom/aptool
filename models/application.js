@@ -2,7 +2,7 @@
 
 module.exports = (sequelize, DataTypes) => {
     const Application = sequelize.define('application', {
-        accountId: {
+        account_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         status: {
             type: DataTypes.JSONB,
         },
-        submissionType: {
+        submission_type: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
         },
     }, { freezeTableName: true });
     Application.associate = function (models) {
-        Application.belongsTo(models.account, { foreignKey: 'accountId', as: 'account' });
+        Application.belongsTo(models.account, { foreignKey: 'account_id', as: 'account' });
     };
     return Application;
 };

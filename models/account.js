@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         statuses: {
             type: DataTypes.ARRAY(DataTypes.JSONB),
         },
-        jobKeywords: {
+        job_keywords: {
             type: DataTypes.ARRAY(DataTypes.STRING),
         },
     }, { freezeTableName: true });

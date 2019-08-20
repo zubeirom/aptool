@@ -4,8 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     const event = sequelize.define('event', {
         name: DataTypes.STRING,
         location: DataTypes.JSONB,
-        contactPerson: DataTypes.JSONB,
-        applicationId: {
+        contact_person: DataTypes.JSONB,
+        application_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'application',

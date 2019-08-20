@@ -1,16 +1,13 @@
 
 module.exports = {
     up: (queryInterface /* Sequelize */) => queryInterface.bulkInsert('application', [{
-        accountId: 9,
-        companyId: 1,
-        status: {
-            name: 'Submitted',
-            color: 'green',
-        },
+        account_id: 9,
+        company: 'Zubeirtech',
+        status: '{ "name": "Submitted", "color": "green"}',
         submissionType: 'Online',
         source: 'Indeed',
-        recruiters: [{ name: 'blablab' }],
-        positionId: 1,
+        recruiters: '[{ "name": "blablab" }]',
+        occupation: 'Frontend Developer',
     }]),
 
     down: (queryInterface /* Sequelize */) => {

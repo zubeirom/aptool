@@ -30,7 +30,7 @@ router.post('/api/token', asyncHandler(async (req, res, next) => {
                     const payload = {
                         id: record.id,
                     };
-                    const token = await jwt.sign(payload, privateKey, { expiresIn: '3h' });
+                    const token = await jwt.sign(payload, privateKey, { expiresIn: '12h' });
                     res.status(200).send(`{ "access_token": "${token}" }`);
                     next();
                 } else {

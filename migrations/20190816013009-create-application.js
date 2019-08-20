@@ -7,7 +7,7 @@ module.exports = {
             autoIncrement: true,
             allowNull: false,
         },
-        accountId: {
+        account_id: {
             type: Sequelize.INTEGER,
             allowNull: false,
             references: {
