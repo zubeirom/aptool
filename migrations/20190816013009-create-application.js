@@ -31,7 +31,7 @@ module.exports = {
         status: {
             type: Sequelize.JSONB,
         },
-        submissionType: {
+        submission_type: {
             type: Sequelize.STRING,
             allowNull: false,
         },
