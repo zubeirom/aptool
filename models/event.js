@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
             type: 'TIMESTAMP',
             allowNull: false,
         },
-    }, {});
+    }, { underscored: true });
     event.associate = function (models) {
         event.belongsTo(models.application, { foreignKey: 'applicationId', as: 'application' });
     };

@@ -15,12 +15,12 @@ module.exports = {
         tel: Sequelize.STRING,
         location: Sequelize.JSONB,
         socials: Sequelize.ARRAY(Sequelize.JSONB),
-        createdAt: {
+        created_at: {
             allowNull: false,
             type: 'TIMESTAMP',
             defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
-        updatedAt: {
+        updated_at: {
             allowNull: false,
             type: 'TIMESTAMP',
             defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

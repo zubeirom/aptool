@@ -33,12 +33,12 @@ module.exports = {
         job_keywords: {
             type: Sequelize.ARRAY(Sequelize.STRING),
         },
-        createdAt: {
+        created_at: {
             allowNull: false,
             type: 'TIMESTAMP',
             defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
-        updatedAt: {
+        updated_at: {
             allowNull: false,
             type: 'TIMESTAMP',
             defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

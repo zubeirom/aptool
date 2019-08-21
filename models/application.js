@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-    }, { freezeTableName: true });
+    }, { freezeTableName: true, underscored: true });
     Application.associate = function (models) {
         Application.belongsTo(models.account, { foreignKey: 'account_id', as: 'account' });
     };
