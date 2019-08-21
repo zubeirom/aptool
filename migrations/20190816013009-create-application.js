@@ -16,12 +16,8 @@ module.exports = {
             },
         },
         company: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
-            references: {
-                model: 'company',
-                key: 'id',
-            },
         },
         created: {
             type: 'TIMESTAMP',
@@ -31,9 +27,8 @@ module.exports = {
         status: {
             type: Sequelize.JSONB,
         },
-        submission_type: {
+        submissionType: {
             type: Sequelize.STRING,
-            allowNull: false,
         },
         source: {
             type: Sequelize.STRING,
