@@ -56,6 +56,7 @@ router.post('/api/accounts', asyncHandler(accountController.add));
 
 /** APPLICATION ROUTE */
 router.get('/api/applications', jwtMW, asyncHandler(applicationController.get));
+router.get('/api/applications/:id', jwtMW, asyncHandler(applicationController.getById));
 router.post('/api/applications', jwtMW, asyncHandler(applicationController.add));
 
 

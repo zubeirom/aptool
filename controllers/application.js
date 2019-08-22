@@ -32,6 +32,18 @@ module.exports = {
         }
     },
 
+    async getById(req, res, next) {
+        try {
+            const { id } = req.params;
+            const findApplication = await application.findByPk(id);
+            const data = findApplication.dataValues;
+            res.status(200).send(applicationSerializer.serialize(data));
+            next();
+        } catch (error) {
+            next(error);
+        }
+    },
+
     async add(req, res, next) {
         try {
             const accessToken = utils.getAccessToken(req);
