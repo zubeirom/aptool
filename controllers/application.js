@@ -58,4 +58,16 @@ module.exports = {
             next(error);
         }
     },
+
+    async delete(req, res, next) {
+        try {
+            const { id } = req.params;
+            const getApplication = await application.findByPk(id);
+            await getApplication.destroy();
+            res.status(204).send({});
+            next();
+        } catch (error) {
+            next(error);
+        }
+    },
 };
