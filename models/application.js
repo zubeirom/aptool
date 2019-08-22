@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         status: {
             type: DataTypes.STRING,
+            defaultValue: 'In Progress',
         },
         source: {
             type: DataTypes.STRING,

@@ -26,6 +26,7 @@ module.exports = {
         },
         status: {
             type: Sequelize.STRING,
+            defaultValue: 'In Progress',
         },
         source: {
             type: Sequelize.STRING,
