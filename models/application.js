@@ -20,17 +20,13 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         },
         status: {
-            type: DataTypes.JSONB,
-        },
-        submission_type: {
             type: DataTypes.STRING,
-            allowNull: false,
         },
         source: {
             type: DataTypes.STRING,
         },
         recruiters: {
-            type: DataTypes.ARRAY(DataTypes.JSONB),
+            type: DataTypes.JSONB,
         },
         phases: {
             type: DataTypes.ARRAY(DataTypes.JSONB),
@@ -39,6 +35,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        note: DataTypes.STRING,
+        posting_url: DataTypes.STRING,
+        deadline: DataTypes.DATE,
     }, { freezeTableName: true, underscored: true });
     Application.associate = function (models) {
         Application.belongsTo(models.account, { foreignKey: 'account_id', as: 'account' });

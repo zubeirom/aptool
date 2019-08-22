@@ -25,16 +25,13 @@ module.exports = {
             defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
         status: {
-            type: Sequelize.JSONB,
-        },
-        submission_type: {
             type: Sequelize.STRING,
         },
         source: {
             type: Sequelize.STRING,
         },
         recruiters: {
-            type: Sequelize.ARRAY(Sequelize.JSONB),
+            type: Sequelize.JSONB,
         },
         phases: {
             type: Sequelize.ARRAY(Sequelize.JSONB),
