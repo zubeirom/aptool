@@ -34,8 +34,14 @@ module.exports = {
 
     async add(req, res, next) {
         try {
+            const accessToken = utils.getAccessToken(req);
+            const payload = await jwt.verify(accessToken, privateKey);
+            const { id } = payload;
             const data = await new JSONAPIDeserializer().deserialize(req.body);
-            console.log(data);
+            data.account_id = id;
+            const saveApplication = await application.create(data);
+            res.status(200).send(applicationSerializer.serialize(saveApplication));
+            next();
         } catch (error) {
             next(error);
         }
