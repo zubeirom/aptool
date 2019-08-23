@@ -58,6 +58,7 @@ router.post('/api/accounts', asyncHandler(accountController.add));
 router.get('/api/applications', jwtMW, asyncHandler(applicationController.get));
 router.get('/api/applications/:id', jwtMW, asyncHandler(applicationController.getById));
 router.post('/api/applications', jwtMW, asyncHandler(applicationController.add));
+router.patch('/api/applications/:id', jwtMW, asyncHandler(applicationController.update));
 router.delete('/api/applications/:id', jwtMW, asyncHandler(applicationController.delete));
 
 

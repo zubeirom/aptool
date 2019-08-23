@@ -59,6 +59,19 @@ module.exports = {
         }
     },
 
+    async update(req, res, next) {
+        try {
+            const { id } = req.params;
+            const data = await new JSONAPIDeserializer().deserialize(req.body);
+            const getApplication = await application.findByPk(id);
+            const updatetApplication = await getApplication.update(data);
+            res.status(200).send(applicationSerializer.serialize(updatetApplication));
+            next();
+        } catch (error) {
+            next(error);
+        }
+    },
+
     async delete(req, res, next) {
         try {
             const { id } = req.params;
