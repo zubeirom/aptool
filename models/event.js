@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         note: DataTypes.STRING(400),
-    }, { underscored: true });
+    }, { freezeTableName: true, underscored: true });
     event.associate = function (models) {
-        event.belongsTo(models.application, { foreignKey: 'applicationId', as: 'application' });
+        event.belongsTo(models.application, { foreignKey: 'application_id', as: 'application' });
     };
     return event;
 };

@@ -18,7 +18,8 @@ module.exports = {
             res.status(200).send(accountSerializer.serialize(data));
             next();
         } catch (error) {
-            next(error);
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
         }
     },
 
@@ -38,7 +39,8 @@ module.exports = {
                 next();
             }
         } catch (error) {
-            next(error);
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
         }
     },
 };

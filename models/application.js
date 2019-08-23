@@ -42,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     }, { freezeTableName: true, underscored: true });
     Application.associate = function (models) {
         Application.belongsTo(models.account, { foreignKey: 'account_id', as: 'account' });
+        Application.hasMany(models.event, { as: 'events' });
     };
     return Application;
 };

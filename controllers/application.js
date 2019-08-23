@@ -4,6 +4,7 @@ const JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 const utils = require('../utils/index');
 const { application } = require('../models');
 const { account } = require('../models');
+const { event } = require('../models');
 const applicationSerializer = require('../serializers/application');
 
 const privateKey = fs.readFileSync('./config/private.key', 'utf8');
@@ -19,28 +20,43 @@ module.exports = {
                 where: {
                     account_id: id,
                 },
-                include: [{
-                    model: account,
-                    as: 'account',
-                    where: { id },
-                }],
+                include: [
+                    {
+                        model: account,
+                        as: 'account',
+                        where: { id },
+                    },
+                    {
+                        model: event,
+                        as: 'events',
+                    },
+                ],
             });
             res.status(200).send(applicationSerializer.serialize(findApplications));
             next();
         } catch (error) {
-            next(error);
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
         }
     },
 
     async getById(req, res, next) {
         try {
             const { id } = req.params;
-            const findApplication = await application.findByPk(id);
+            const findApplication = await application.findByPk(id, {
+                include: [
+                    {
+                        model: event,
+                        as: 'events',
+                    },
+                ],
+            });
             const data = findApplication.dataValues;
             res.status(200).send(applicationSerializer.serialize(data));
             next();
         } catch (error) {
-            next(error);
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
         }
     },
 
@@ -55,7 +71,8 @@ module.exports = {
             res.status(200).send(applicationSerializer.serialize(saveApplication));
             next();
         } catch (error) {
-            next(error);
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
         }
     },
 
@@ -68,7 +85,8 @@ module.exports = {
             res.status(200).send(applicationSerializer.serialize(updatetApplication));
             next();
         } catch (error) {
-            next(error);
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
         }
     },
 
@@ -80,7 +98,8 @@ module.exports = {
             res.status(204).send({});
             next();
         } catch (error) {
-            next(error);
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
         }
     },
 };
