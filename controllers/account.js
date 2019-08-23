@@ -25,7 +25,9 @@ module.exports = {
 
     async add(req, res, next) {
         try {
-            const data = await new JSONAPIDeserializer().deserialize(req.body);
+            const data = await new JSONAPIDeserializer({
+                keyForAttribute: 'underscore_case',
+            }).deserialize(req.body);
             const {
                 username, firstname, lastname, password,
             } = data;

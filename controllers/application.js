@@ -65,7 +65,9 @@ module.exports = {
             const accessToken = utils.getAccessToken(req);
             const payload = await jwt.verify(accessToken, privateKey);
             const { id } = payload;
-            const data = await new JSONAPIDeserializer().deserialize(req.body);
+            const data = await new JSONAPIDeserializer({
+                keyForAttribute: 'underscore_case',
+            }).deserialize(req.body);
             data.account_id = id;
             const saveApplication = await application.create(data);
             res.status(200).send(applicationSerializer.serialize(saveApplication));
@@ -79,7 +81,9 @@ module.exports = {
     async update(req, res, next) {
         try {
             const { id } = req.params;
-            const data = await new JSONAPIDeserializer().deserialize(req.body);
+            const data = await new JSONAPIDeserializer({
+                keyForAttribute: 'underscore_case',
+            }).deserialize(req.body);
             const getApplication = await application.findByPk(id);
             const updatetApplication = await getApplication.update(data);
             res.status(200).send(applicationSerializer.serialize(updatetApplication));

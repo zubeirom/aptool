@@ -8,6 +8,7 @@ const exjwt = require('express-jwt');
 const bcrypt = require('bcryptjs');
 const accountController = require('../controllers/account');
 const applicationController = require('../controllers/application');
+const eventController = require('../controllers/event');
 // const utils = require('../utils/index');
 const { account } = require('../models');
 
@@ -61,5 +62,7 @@ router.post('/api/applications', jwtMW, asyncHandler(applicationController.add))
 router.patch('/api/applications/:id', jwtMW, asyncHandler(applicationController.update));
 router.delete('/api/applications/:id', jwtMW, asyncHandler(applicationController.delete));
 
+/** EVENT ROUTE */
+router.post('/api/events', jwtMW, asyncHandler(eventController.add));
 
 module.exports = router;
