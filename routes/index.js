@@ -6,6 +6,7 @@ const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const exjwt = require('express-jwt');
 const bcrypt = require('bcryptjs');
+const { application } = require('../models');
 const accountController = require('../controllers/account');
 const applicationController = require('../controllers/application');
 const eventController = require('../controllers/event');
@@ -67,5 +68,22 @@ router.get('/api/events/:id', jwtMW, asyncHandler(eventController.getById));
 router.post('/api/events', jwtMW, asyncHandler(eventController.add));
 router.patch('/api/events/:id', jwtMW, asyncHandler(eventController.update));
 router.delete('/api/events/:id', jwtMW, asyncHandler(eventController.delete));
+
+
+router.post('/api/routeAccessCheck', asyncHandler(async (req, res, next) => {
+    const appID = req.body.id;
+    const { accessToken } = req.body;
+    const payload = await jwt.verify(accessToken, privateKey);
+    const { id } = payload;
+    const findApp = await application.findByPk(appID);
+    const data = findApp.dataValues;
+    if (data.account_id === id) {
+        res.status(201).send('Authorized');
+        next();
+    } else {
+        res.status(201).send('Unauthorized');
+        next();
+    }
+}));
 
 module.exports = router;
