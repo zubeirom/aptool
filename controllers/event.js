@@ -52,4 +52,16 @@ module.exports = {
             next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
         }
     },
+    async delete(req, res, next) {
+        try {
+            const { id } = req.params;
+            const getEvent = await event.findByPk(id);
+            await getEvent.destroy();
+            res.status(204).send({});
+            next();
+        } catch (error) {
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
+        }
+    },
 };

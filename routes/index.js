@@ -66,5 +66,6 @@ router.delete('/api/applications/:id', jwtMW, asyncHandler(applicationController
 router.get('/api/events/:id', jwtMW, asyncHandler(eventController.getById));
 router.post('/api/events', jwtMW, asyncHandler(eventController.add));
 router.patch('/api/events/:id', jwtMW, asyncHandler(eventController.update));
+router.delete('/api/events/:id', jwtMW, asyncHandler(eventController.delete));
 
 module.exports = router;
