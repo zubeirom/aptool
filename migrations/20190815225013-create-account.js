@@ -32,6 +32,7 @@ module.exports = {
         },
         job_keywords: {
             type: Sequelize.ARRAY(Sequelize.STRING),
+            defaultValue: [],
         },
         created_at: {
             allowNull: false,

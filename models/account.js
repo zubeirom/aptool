@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         job_keywords: {
             type: DataTypes.ARRAY(DataTypes.STRING),
+            defaultValue: [],
         },
     }, { freezeTableName: true, underscored: true });
     Account.associate = function (models) {
