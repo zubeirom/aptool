@@ -1,0 +1,33 @@
+Routes:
+
+/applications:
+    -models: application, event=limit by 5
+
+/applications/new:
+    -models: application
+
+/application/:id
+    -models: application, event
+
+/application/status:
+    -models: application, event=limit by 5
+
+/my-account: 
+    -models: account
+
+/event/:id
+    -models: event, application
+
+
+TODO:
+  
+  1. Edit Event 
+  2. Delete Event
+  3. Watch My account
+  4. Edit My account
+  5. Delete Account
+  6. Add Google Maps
+  7. Query by Status
+  8. Query by Company Name
+  9. Implement Upcoming Events on sidebar
+  10. Fix bugs and go through application
