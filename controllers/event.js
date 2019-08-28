@@ -1,4 +1,8 @@
 const JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
+// eslint-disable-next-line global-require
+const googleMapsClient = require('@google/maps').createClient({
+    key: 'AIzaSyAwH4Tq9WrHY3LtgO9rElgg4MI9i8Tmhao',
+});
 const { event } = require('../models');
 const { application } = require('../models');
 const eventSerializer = require('../serializers/event');
@@ -16,8 +20,23 @@ module.exports = {
                 ],
             });
             const data = findEvent.dataValues;
-            res.status(200).send(eventSerializer.serialize(data));
-            next();
+            if (data.location) {
+                const address = `${data.location.street}, ${data.location.postal_code}, ${data.location.city}`;
+                googleMapsClient.geocode({
+                    address,
+                }, (err, response) => {
+                    const loc = {
+                        lat: response.json.results[0].geometry.location.lat,
+                        lng: response.json.results[0].geometry.location.lng,
+                    };
+                    data.geometry = loc;
+
+
+                    console.log(data);
+                    res.status(200).send(eventSerializer.serialize(data));
+                    next();
+                });
+            }
         } catch (error) {
             console.log(error);
             next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
