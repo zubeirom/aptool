@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
         deadline: DataTypes.DATE,
     }, { freezeTableName: true, underscored: true });
     Application.associate = function (models) {
-        Application.belongsTo(models.account, { foreignKey: 'account_id', as: 'account' });
+        Application.belongsTo(models.account, { foreignKey: 'account_id', as: 'account', onDelete: 'cascade' });
         Application.hasMany(models.event, { as: 'events' });
     };
     return Application;
