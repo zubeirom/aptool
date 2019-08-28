@@ -45,4 +45,20 @@ module.exports = {
             next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
         }
     },
+
+    async update(req, res, next) {
+        try {
+            const { id } = req.params;
+            const data = await new JSONAPIDeserializer({
+                keyForAttribute: 'underscore_case',
+            }).deserialize(req.body);
+            const getAccount = await account.findByPk(id);
+            const updateAccount = await getAccount.update(data);
+            res.status(200).send(accountSerializer.serialize(updateAccount));
+            next();
+        } catch (error) {
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
+        }
+    },
 };

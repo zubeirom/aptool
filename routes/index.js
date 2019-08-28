@@ -55,6 +55,7 @@ router.post('/api/token', asyncHandler(async (req, res, next) => {
 /** ACCOUNT ROUTE */
 router.get('/api/accounts', jwtMW, asyncHandler(accountController.get));
 router.post('/api/accounts', asyncHandler(accountController.add));
+router.patch('/api/accounts/:id', asyncHandler(accountController.update));
 
 /** APPLICATION ROUTE */
 router.get('/api/applications', jwtMW, asyncHandler(applicationController.get));
