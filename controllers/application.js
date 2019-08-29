@@ -16,10 +16,9 @@ module.exports = {
             const accessToken = utils.getAccessToken(req);
             const payload = await jwt.verify(accessToken, privateKey);
             const { id } = payload;
+            req.query.account_id = id;
             const findApplications = await application.findAll({
-                where: {
-                    account_id: id,
-                },
+                where: req.query,
                 include: [
                     {
                         model: account,
