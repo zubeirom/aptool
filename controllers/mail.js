@@ -34,7 +34,7 @@ module.exports = {
                     next();
                 } else {
                     console.log(info);
-                    res.status(200).json({ message: 'Successfully sent Email' });
+                    res.status(200).json({ message: 'Successfully sent e-mail' });
                     next();
                 }
             });
