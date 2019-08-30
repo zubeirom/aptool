@@ -10,6 +10,7 @@ const { application } = require('../models');
 const accountController = require('../controllers/account');
 const applicationController = require('../controllers/application');
 const eventController = require('../controllers/event');
+const mail = require('../controllers/mail');
 // const utils = require('../utils/index');
 const { account } = require('../models');
 
@@ -71,6 +72,8 @@ router.post('/api/events', jwtMW, asyncHandler(eventController.add));
 router.patch('/api/events/:id', jwtMW, asyncHandler(eventController.update));
 router.delete('/api/events/:id', jwtMW, asyncHandler(eventController.delete));
 
+/** MAIL */
+router.post('/api/send-mail', asyncHandler(mail.send));
 
 router.post('/api/routeAccessCheck', asyncHandler(async (req, res, next) => {
     const appID = req.body.id;
