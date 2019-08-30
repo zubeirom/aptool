@@ -8,6 +8,22 @@ const { application } = require('../models');
 const eventSerializer = require('../serializers/event');
 
 module.exports = {
+
+    async get(req, res, next) {
+        try {
+            const events = await event.findAll({
+                order: [
+                    ['date', 'DESC'],
+                ],
+            });
+            res.status(200).send(eventSerializer.serialize(events));
+            next();
+        } catch (error) {
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
+        }
+    },
+
     async getById(req, res, next) {
         try {
             const { id } = req.params;

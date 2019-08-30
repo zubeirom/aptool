@@ -44,6 +44,9 @@ module.exports = {
                         as: 'events',
                     },
                 ],
+                order: [
+                    ['created', 'DESC'],
+                ],
             });
             res.status(200).send(applicationSerializer.serialize(findApplications));
             next();
@@ -55,6 +58,9 @@ module.exports = {
 
     async getById(req, res, next) {
         try {
+            const accessToken = utils.getAccessToken(req);
+            const payload = await jwt.verify(accessToken, privateKey);
+            const userId = payload.id;
             const { id } = req.params;
             const findApplication = await application.findByPk(id, {
                 include: [
@@ -65,8 +71,13 @@ module.exports = {
                 ],
             });
             const data = findApplication.dataValues;
-            res.status(200).send(applicationSerializer.serialize(data));
-            next();
+            if (userId === data.account_id) {
+                res.status(200).send(applicationSerializer.serialize(data));
+                next();
+            } else {
+                res.status(400).send({ message: 'Unauthorized' });
+                next();
+            }
         } catch (error) {
             console.log(error);
             next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');

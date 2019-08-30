@@ -75,20 +75,4 @@ router.delete('/api/events/:id', jwtMW, asyncHandler(eventController.delete));
 /** MAIL */
 router.post('/api/send-mail', asyncHandler(mail.send));
 
-router.post('/api/routeAccessCheck', asyncHandler(async (req, res, next) => {
-    const appID = req.body.id;
-    const { accessToken } = req.body;
-    const payload = await jwt.verify(accessToken, privateKey);
-    const { id } = payload;
-    const findApp = await application.findByPk(appID);
-    const data = findApp.dataValues;
-    if (data.account_id === id) {
-        res.status(201).send('Authorized');
-        next();
-    } else {
-        res.status(201).send('Unauthorized');
-        next();
-    }
-}));
-
 module.exports = router;
