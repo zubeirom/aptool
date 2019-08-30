@@ -1,7 +1,10 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
+const Sequelize = require('sequelize');
 const utils = require('../utils/index');
+
+const { Op } = Sequelize;
 const { application } = require('../models');
 const { account } = require('../models');
 const { event } = require('../models');
@@ -17,6 +20,17 @@ module.exports = {
             const payload = await jwt.verify(accessToken, privateKey);
             const { id } = payload;
             req.query.account_id = id;
+            if (req.query.company) {
+                const val = req.query.company;
+                req.query.company = {
+                    [Op.iLike]: `%${val}%`,
+                };
+            } else {
+                delete req.query.company;
+            }
+            if (!req.query.status || req.query.status === 'GET ALL') {
+                delete req.query.status;
+            }
             const findApplications = await application.findAll({
                 where: req.query,
                 include: [
