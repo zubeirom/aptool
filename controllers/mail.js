@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const validator = require('validator');
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -18,24 +19,28 @@ const transporter = nodemailer.createTransport({
 module.exports = {
     send(req, res, next) {
         const { email, subject, message } = req.body;
+        if (validator.isEmail(email)) {
+            const mailOptions = {
+                from: email,
+                to: 'zubeir.mohamed@outlook.de',
+                subject,
+                text: message,
+            };
 
-        const mailOptions = {
-            from: email,
-            to: 'zubeir.mohamed@outlook.de',
-            subject,
-            text: message,
-        };
-
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log(error);
-                res.status(400).send('Error sending mail');
-                next();
-            } else {
-                console.log(info);
-                res.status(200).send('Successfully sent Email');
-                next();
-            }
-        });
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.log(error);
+                    res.status(400).json({ message: 'Error sending mail' });
+                    next();
+                } else {
+                    console.log(info);
+                    res.status(200).json({ message: 'Successfully sent Email' });
+                    next();
+                }
+            });
+        } else {
+            res.status(400).send('Error, invalid email');
+            next();
+        }
     },
 };
