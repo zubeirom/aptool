@@ -2,7 +2,7 @@ version: 2
 jobs:
   checkout_code: 
     docker:
-      - image: circleci/node:10
+      - image: google/cloud-sdk
     working_directory: ~/GIT/zumo/webapps/aptool/aptool
     steps:
       - checkout
@@ -13,7 +13,7 @@ jobs:
 
   build:
     docker:
-      - image: circleci/node:10
+      - image: google/cloud-sdk
     working_directory: ~/GIT/zumo/webapps/aptool/aptool
     steps:
       - checkout
@@ -21,14 +21,26 @@ jobs:
           name: Install  dependencies
           command: 'npm install'
       
-  deploy_to_development:
+  deploy:
     docker:
-      - image: circleci/node:10
+      - image: google/cloud-sdk
     working_directory: ~/GIT/zumo/webapps/aptool/aptool
     steps: 
       - run:
-          name: Push to Heroku 
-          command: git push https://heroku:f223ac06-9231-41d2-8c01-789ed0e1b846@git.heroku.com/api-aptool.git dev
+          name: Production Deployment 
+          command: |
+              echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
+              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+  
+  run_db_migrations: 
+    docker:
+       - image: google/cloud-sdk
+    working_directory: ~/GIT/zumo/webapps/aptool/aptool
+    steps:
+      - run:
+          name: Run Database Migrations
+          command: npx sequelize-cli db:migrate
     
 workflows:
   version: 2
@@ -38,17 +50,23 @@ workflows:
       - build:
           requires:
             - checkout_code
-  deploy_to_development:
+  deploy:
     jobs:
       - checkout_code
       - build:
           requires: 
             - checkout_code
-      - deploy_to_development:
+      - run_db_migrations:
           requires:
+            - checkout_code
             - build
+      - deploy:
+          requires:
+            - checkout_code
+            - build
+            - run_db_migrations
           filters:
             branches:
               only:
-                 - dev
+                 - master
         
