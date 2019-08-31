@@ -27,7 +27,7 @@ jobs:
     working_directory: ~/GIT/zumo/webapps/aptool/aptool
     steps: 
       - run:
-          name: Push to Heroku
+          name: Push to Heroku 
           command: git push https://heroku:f223ac06-9231-41d2-8c01-789ed0e1b846@git.heroku.com/api-aptool.git master
     
 workflows:
