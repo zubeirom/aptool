@@ -2,10 +2,38 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10
-    working_directory: ~/GIT/zumo/webapps/aptool/backend
+      - image: circleci/node:10
+    working_directory: ~/GIT/zumo/webapps/aptool/aptool
     steps:
       - checkout
       - run:
-          name: Install npm dependencies
+          name: Install  dependencies
           command: 'npm install'
+      
+  deploy_to_development:
+    docker:
+      - image: circleci/node:10
+    working_directory: ~/GIT/zumo/webapps/aptool/aptool
+    steps: 
+      - run:
+          name: Push to Heroku
+          command: git push https://heroku:f71c005f-bf71-4998-a995-e60f3accaecb@git.heroku.com/api-aptool.git master
+    
+workflows:
+  version: 2
+  build:
+    jobs:
+      - checkout
+      - build:
+          requires:
+            - checkout
+  deploy_to_development:
+    jobs:
+      - checkout
+      - build:
+          requires: 
+            - checkout
+      - deploy_to_development:
+          requires:
+            - build
+        
