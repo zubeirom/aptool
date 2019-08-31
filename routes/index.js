@@ -6,7 +6,6 @@ const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const exjwt = require('express-jwt');
 const bcrypt = require('bcryptjs');
-const { application } = require('../models');
 const accountController = require('../controllers/account');
 const applicationController = require('../controllers/application');
 const eventController = require('../controllers/event');
@@ -67,6 +66,7 @@ router.patch('/api/applications/:id', jwtMW, asyncHandler(applicationController.
 router.delete('/api/applications/:id', jwtMW, asyncHandler(applicationController.delete));
 
 /** EVENT ROUTE */
+router.get('/api/events', jwtMW, asyncHandler(eventController.get));
 router.get('/api/events/:id', jwtMW, asyncHandler(eventController.getById));
 router.post('/api/events', jwtMW, asyncHandler(eventController.add));
 router.patch('/api/events/:id', jwtMW, asyncHandler(eventController.update));

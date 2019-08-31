@@ -3,18 +3,37 @@ const JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 const googleMapsClient = require('@google/maps').createClient({
     key: 'AIzaSyAwH4Tq9WrHY3LtgO9rElgg4MI9i8Tmhao',
 });
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
 const { event } = require('../models');
+const utils = require('../utils/index');
 const { application } = require('../models');
 const eventSerializer = require('../serializers/event');
+
+const privateKey = fs.readFileSync('./config/private.key', 'utf8');
+
 
 module.exports = {
 
     async get(req, res, next) {
         try {
+            const accessToken = utils.getAccessToken(req);
+            const payload = await jwt.verify(accessToken, privateKey);
+            const { id } = payload;
             const events = await event.findAll({
+                include: [
+                    {
+                        model: application,
+                        as: 'application',
+                        where: {
+                            account_id: id,
+                        },
+                    },
+                ],
                 order: [
                     ['date', 'DESC'],
                 ],
+                limit: 5,
             });
             res.status(200).send(eventSerializer.serialize(events));
             next();
