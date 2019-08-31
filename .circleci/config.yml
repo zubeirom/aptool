@@ -36,4 +36,8 @@ workflows:
       - deploy_to_development:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                 - dev
         
