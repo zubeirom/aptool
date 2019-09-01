@@ -13,6 +13,9 @@
         "database": "PG_DATABASE",
         "host": "PG_HOST",
         "dialect": "postgres",
+        "dialectOptions": {
+            "ssl": true
+        },
         "operatorsAliases": false,
         "use_env_variable": "DATABASE_URL"
     },
