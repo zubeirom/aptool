@@ -33,7 +33,7 @@ jobs:
               gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
               gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
   
-  run_db_migrations: 
+  migrate_db: 
     docker:
        - image: circleci/node:10
     working_directory: ~/GIT/zumo/webapps/aptool/aptool
@@ -56,15 +56,19 @@ workflows:
       - build:
           requires: 
             - checkout_code
-      - run_db_migrations:
+      - migrate_db:
           requires:
             - checkout_code
             - build
+          filters:
+            branches:
+              only:
+                 - master
       - deploy:
           requires:
             - checkout_code
             - build
-            - run_db_migrations
+            - migrate_db
           filters:
             branches:
               only:
