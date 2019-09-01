@@ -1,0 +1,28 @@
+{
+    "development": {
+        "username": "zumo",
+        "password": "password",
+        "database": "aptool",
+        "host": "127.0.0.1",
+        "dialect": "postgres",
+        "operatorsAliases": false
+    },
+    "test": {
+        "username": "PG_USER",
+        "password": "PG_PASSWORD",
+        "database": "PG_DATABASE",
+        "host": "PG_HOST",
+        "dialect": "postgres",
+        "operatorsAliases": false,
+        "use_env_variable": "PG_URI"
+    },
+    "production": {
+        "username": "PG_USER",
+        "password": "PG_PASSWORD",
+        "database": "PG_DATABASE",
+        "host": "PG_HOST",
+        "dialect": "postgres",
+        "operatorsAliases": false,
+        "use_env_variable": "PG_URI"
+    }
+}

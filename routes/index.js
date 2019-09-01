@@ -2,7 +2,6 @@
 require('dotenv').config();
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const exjwt = require('express-jwt');
 const bcrypt = require('bcryptjs');
@@ -13,10 +12,9 @@ const mail = require('../controllers/mail');
 // const utils = require('../utils/index');
 const { account } = require('../models');
 
-const privateKey = fs.readFileSync('./config/private.key', 'utf8');
 
 const jwtMW = exjwt({
-    secret: privateKey,
+    secret: process.env.JWT_PRIVATE_KEY,
 });
 
 const router = express.Router();
@@ -32,7 +30,7 @@ router.post('/api/token', asyncHandler(async (req, res, next) => {
                     const payload = {
                         id: record.id,
                     };
-                    const token = await jwt.sign(payload, privateKey, { expiresIn: '12h' });
+                    const token = await jwt.sign(payload, process.env.JWT_PRIVATE_KEY, { expiresIn: '12h' });
                     res.status(200).send(`{ "access_token": "${token}" }`);
                     next();
                 } else {

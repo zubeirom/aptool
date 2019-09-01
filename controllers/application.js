@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
-const fs = require('fs');
 const JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 const Sequelize = require('sequelize');
 const utils = require('../utils/index');
+require('dotenv').config();
 
 const { Op } = Sequelize;
 const { application } = require('../models');
@@ -10,14 +10,12 @@ const { account } = require('../models');
 const { event } = require('../models');
 const applicationSerializer = require('../serializers/application');
 
-const privateKey = fs.readFileSync('./config/private.key', 'utf8');
-
 
 module.exports = {
     async get(req, res, next) {
         try {
             const accessToken = utils.getAccessToken(req);
-            const payload = await jwt.verify(accessToken, privateKey);
+            const payload = await jwt.verify(accessToken, process.env.JWT_PRIVATE_KEY);
             const { id } = payload;
             req.query.account_id = id;
             if (req.query.company) {
@@ -59,7 +57,7 @@ module.exports = {
     async getById(req, res, next) {
         try {
             const accessToken = utils.getAccessToken(req);
-            const payload = await jwt.verify(accessToken, privateKey);
+            const payload = await jwt.verify(accessToken, process.env.JWT_PRIVATE_KEY);
             const userId = payload.id;
             const { id } = req.params;
             const findApplication = await application.findByPk(id, {
@@ -87,7 +85,7 @@ module.exports = {
     async add(req, res, next) {
         try {
             const accessToken = utils.getAccessToken(req);
-            const payload = await jwt.verify(accessToken, privateKey);
+            const payload = await jwt.verify(accessToken, process.env.JWT_PRIVATE_KEY);
             const { id } = payload;
             const data = await new JSONAPIDeserializer({
                 keyForAttribute: 'underscore_case',
