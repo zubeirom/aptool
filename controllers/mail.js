@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const validator = require('validator');
+require('dotenv').config();
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -8,10 +9,10 @@ const transporter = nodemailer.createTransport({
     auth: {
         type: 'OAuth2',
         user: 'zubeir40@googlemail.com',
-        clientId: '805142752847-b7chdvsoni8i85609rt3lane66l336fi.apps.googleusercontent.com',
-        clientSecret: 'dM9jSlMiIAhsoFHaeEuc1gzg',
-        refreshToken: '1/9d85CmEMJTI0k4nZPNRNvHGKf2eK55qTv4yACSFnX6Nl3slt7qn8pCbe9LZwXL-X',
-        accessToken: 'ya29.Glt1By9UlGpJdWmdAZohF4Tpr52W7cFpnCaKw4rw-1CAEBt0If5xG1nnZZB71cJUHvWg6IR2yYvWqz1OH-cLs7pFLgKz-eaG5wOPkDZTNvCsZziea2Q9sEoVJITM',
+        clientId: process.env.G_CLIENT_ID,
+        clientSecret: process.env.G_CLIENT_SECRET,
+        refreshToken: process.env.G_REFRESH_TOKEN,
+        accessToken: process.env.G_ACCESS_TOKEN,
         expires: 1484314697598,
     },
 });

@@ -1,2 +1,6 @@
 /node_modules/
 /notes.txt
+.gitsecret/keys/random_seed
+.env
+/config/config.json
+/config/private.key
