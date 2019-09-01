@@ -12,6 +12,7 @@
         "password": "PG_PASSWORD",
         "database": "PG_DATABASE",
         "host": "PG_HOST",
+        "url": "DATABASE_URL",
         "dialect": "postgres",
         "dialectOptions": {
             "ssl": true
@@ -24,6 +25,7 @@
         "password": "PG_PASSWORD",
         "database": "PG_DATABASE",
         "host": "PG_HOST",
+        "url": "DATABASE_URL",
         "dialect": "postgres",
         "dialectOptions": {
             "ssl": true
