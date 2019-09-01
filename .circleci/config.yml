@@ -25,7 +25,7 @@ jobs:
       
   deploy:
     docker:
-      - image: google/cloud-sdk
+      - image: buildpack-deps:trusty
     working_directory: ~/GIT/zumo/webapps/aptool/aptool
     steps:
       - attach_workspace:
