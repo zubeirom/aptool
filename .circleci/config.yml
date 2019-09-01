@@ -32,11 +32,9 @@ jobs:
           at: .
       - run:
           name: Deploy to production 
-          command:  |
-            echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account $G_SERVICE_ACCOUNT --key-file=-
-            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-            gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-            gcloud app deploy
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+
 
 
 workflows:
