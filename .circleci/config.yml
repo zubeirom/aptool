@@ -2,7 +2,7 @@ version: 2
 jobs:
   checkout_code: 
     docker:
-      - image: google/cloud-sdk
+      - image: circleci/node:10
     working_directory: ~/GIT/zumo/webapps/aptool/aptool
     steps:
       - checkout
@@ -13,7 +13,7 @@ jobs:
 
   build:
     docker:
-      - image: google/cloud-sdk
+      - image: circleci/node:10
     working_directory: ~/GIT/zumo/webapps/aptool/aptool
     steps:
       - checkout
@@ -35,7 +35,7 @@ jobs:
   
   run_db_migrations: 
     docker:
-       - image: google/cloud-sdk
+       - image: circleci/node:10
     working_directory: ~/GIT/zumo/webapps/aptool/aptool
     steps:
       - run:
