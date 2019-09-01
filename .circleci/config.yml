@@ -27,7 +27,9 @@ jobs:
     docker:
       - image: buildpack-deps:trusty
     working_directory: ~/GIT/zumo/webapps/aptool/aptool
-    steps: 
+    steps:
+      - attach_workspace:
+          at: .
       - run:
           name: Production Deployment 
           command: |
