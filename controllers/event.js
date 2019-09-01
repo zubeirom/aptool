@@ -1,7 +1,8 @@
 const JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
+require('dotenv').config();
 // eslint-disable-next-line global-require
 const googleMapsClient = require('@google/maps').createClient({
-    key: 'AIzaSyAwH4Tq9WrHY3LtgO9rElgg4MI9i8Tmhao',
+    key: process.env.G_MAPS_API_KEY,
 });
 require('dotenv').config();
 
