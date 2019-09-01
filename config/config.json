@@ -14,7 +14,7 @@
         "host": "PG_HOST",
         "dialect": "postgres",
         "operatorsAliases": false,
-        "use_env_variable": "PG_URI"
+        "use_env_variable": "DATABASE_URL"
     },
     "production": {
         "username": "PG_USER",
@@ -22,7 +22,10 @@
         "database": "PG_DATABASE",
         "host": "PG_HOST",
         "dialect": "postgres",
+        "dialectOptions": {
+            "ssl": true
+        },
         "operatorsAliases": false,
-        "use_env_variable": "PG_URI"
+        "use_env_variable": "DATABASE_URL"
     }
 }
