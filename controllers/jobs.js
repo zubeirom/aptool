@@ -1,22 +1,31 @@
-// const axios = require('axios');
+const axios = require('axios');
 
 module.exports = {
-    // async get(req, res, next) {
-    //     try {
-    //         const accessToken = await axios(
-    //             {
-    //                 method: 'post',
-    //                 url: 'https://www.linkedin.com/oauth/v2/accessToken',
-    //                 params: {
-    //                     grant_type: 'client_credentials',
-    //                     client_id: process.env.LI_CLIENT_ID,
-    //                     client_secret: process.env.LI_CLIENT_SECRET,
-    //                 },
-    //             },
-    //         );
-    //         console.log(accessToken);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // },
+    async get(req, res, next) {
+        try {
+            if (req.query.keywords || req.query.location) {
+                // const query = `search=${req.query.keywords}&location=${req.query.location}`;
+                const jobs = await axios(
+                    {
+                        method: 'get',
+                        url: 'https://jobs.github.com/positions.json?description=node&location=mannheim',
+                    },
+                );
+                res.status(200).send(jobs.data);
+                next();
+            } else {
+                const jobs = await axios(
+                    {
+                        method: 'get',
+                        url: 'https://jobs.github.com/positions.json',
+                    },
+                );
+                res.status(200).send(jobs.data);
+                next();
+            }
+        } catch (error) {
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
+        }
+    },
 };
