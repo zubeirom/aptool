@@ -3,12 +3,20 @@ const axios = require('axios');
 module.exports = {
     async get(req, res, next) {
         try {
-            if (req.query.keywords || req.query.location) {
-                // const query = `search=${req.query.keywords}&location=${req.query.location}`;
+            if (req.query.search || req.query.location) {
+                const q = req.query;
+                // eslint-disable-next-line no-restricted-syntax
+                for (const key in q) {
+                    if (q[key] === 'undefined') {
+                        q[key] = '';
+                    }
+                }
+                const query = `description=${req.query.search}&location=${req.query.location}`;
+                console.log(req.query);
                 const jobs = await axios(
                     {
                         method: 'get',
-                        url: 'https://jobs.github.com/positions.json?description=node&location=mannheim',
+                        url: `https://jobs.github.com/positions.json?${query}`,
                     },
                 );
                 res.status(200).send(jobs.data);
