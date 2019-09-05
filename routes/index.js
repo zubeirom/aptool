@@ -76,5 +76,7 @@ router.post('/api/send-mail', asyncHandler(mail.send));
 
 /** JOBS */
 router.get('/api/jobs', asyncHandler(jobs.get));
+router.get('/api/p-jobs', asyncHandler(jobs.getPersonalized));
+
 
 module.exports = router;

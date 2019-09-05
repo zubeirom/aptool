@@ -12,7 +12,6 @@ module.exports = {
                     }
                 }
                 const query = `description=${req.query.search}&location=${req.query.location}`;
-                console.log(req.query);
                 const jobs = await axios(
                     {
                         method: 'get',
@@ -31,6 +30,22 @@ module.exports = {
                 res.status(200).send(jobs.data);
                 next();
             }
+        } catch (error) {
+            console.log(error);
+            next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
+        }
+    },
+
+    async getPersonalized(req, res, next) {
+        try {
+            const jobs = await axios(
+                {
+                    method: 'get',
+                    url: `https://jobs.github.com/positions.json?description=${req.query.search}`,
+                },
+            );
+            res.status(200).send(jobs.data);
+            next();
         } catch (error) {
             console.log(error);
             next('Server Error! We will fix this as soon as possible. If you have any questions, send an email at zubeir.mohamed@outlook.de. Thank you ');
