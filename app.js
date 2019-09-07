@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const enforce = require('express-sslify');
 const Sentry = require('@sentry/node');
 
 Sentry.init({ dsn: 'https://919db697e951412f962235e5f02c43c3@sentry.io/1549178' });
@@ -10,6 +11,9 @@ const app = express();
 
 // Sentry
 app.use(Sentry.Handlers.requestHandler());
+
+// Express sslify
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 // Bodyparser
 app.use(express.urlencoded({ extended: false }));

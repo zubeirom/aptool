@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "express-jwt": "^5.3.1",
+    "express-sslify": "^1.2.0",
     "jsonapi-serializer": "^3.6.4",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.3.0",
