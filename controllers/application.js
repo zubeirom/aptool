@@ -26,7 +26,16 @@ module.exports = {
             } else {
                 delete req.query.company;
             }
-            if (!req.query.status || req.query.status === 'GET ALL') {
+            if (req.query.status) {
+                if (req.query.status === 'GET ALL') {
+                    delete req.query.status;
+                } else {
+                    const val = req.query.status;
+                    req.query.status = {
+                        [Op.iLike]: `%${val}%`,
+                    };
+                }
+            } else {
                 delete req.query.status;
             }
             const findApplications = await application.findAll({
