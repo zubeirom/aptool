@@ -19,13 +19,16 @@ const transporter = nodemailer.createTransport({
 
 module.exports = {
     send(req, res, next) {
-        const { email, subject, message } = req.body;
+        const {
+            email, subject, message, firstname, lastname,
+        } = req.body;
         if (validator.isEmail(email)) {
             const mailOptions = {
                 from: email,
                 to: 'zubeir.mohamed@outlook.de',
                 subject,
-                text: message,
+                text: `Name: ${firstname}, ${lastname} \n \n ${message}
+                `,
             };
 
             transporter.sendMail(mailOptions, (error, info) => {
