@@ -14,7 +14,7 @@ Here is the frontend Repo: https://github.com/zubeir68/aptoolfe
 
 ## The Entity Relationship Diagram of the Database
 
-![](https://imgur.com/LltyyX3.png)
+![](https://imgur.com/mBQwHtd.png)
 
 ## Installation
 
