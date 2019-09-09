@@ -10,7 +10,8 @@ Here is the frontend Repo: https://github.com/zubeir68/aptoolfe
 1. PostgresSQL
 2. Sequelize
 3. Express.js
-4. Ember.js 
+4. NodeJS
+5. Ember.js 
 
 ## The Entity Relationship Diagram of the Database
 
