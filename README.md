@@ -15,7 +15,7 @@ Here is the frontend Repo: https://github.com/zubeir68/aptoolfe
 
 ## Screenshot of the Application (Dummy Account)
 
-![](https://imgur.com/bqv9aeY.png)
+![](https://i.imgur.com/G51aY92.png)
 
 ## The Entity Relationship Diagram of the Database
 
