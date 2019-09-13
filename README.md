@@ -13,6 +13,10 @@ Here is the frontend Repo: https://github.com/zubeir68/aptoolfe
 4. NodeJS
 5. Ember.js 
 
+## Screenshot of the Application (Dummy Account)
+
+![](https://imgur.com/bqv9aeY.png)
+
 ## The Entity Relationship Diagram of the Database
 
 ![](https://imgur.com/mBQwHtd.png)
