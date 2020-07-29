@@ -1,7 +1,7 @@
 {
     "development": {
-        "username": "zumo",
-        "password": "password",
+        "username": "postgres",
+        "password": "munmah7364",
         "database": "aptool",
         "host": "127.0.0.1",
         "dialect": "postgres",

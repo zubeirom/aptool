@@ -9,6 +9,9 @@ Sentry.init({ dsn: 'https://919db697e951412f962235e5f02c43c3@sentry.io/1549178' 
 
 const app = express();
 
+// cors
+app.use(cors());
+
 // Sentry
 app.use(Sentry.Handlers.requestHandler());
 
@@ -18,10 +21,6 @@ app.use(enforce.HTTPS({ trustProtoHeader: true }));
 // Bodyparser
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
-
-// cors
-app.use(cors());
-
 
 // Sentry error middleware
 app.use(Sentry.Handlers.errorHandler());
@@ -38,5 +37,5 @@ app.use((err, req, res, next) => {
 
 app.use('/', require('./routes/index'));
 
-const { PORT } = process.env;
+const PORT = process.env.PORT || 3000 ;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
